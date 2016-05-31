@@ -3,39 +3,85 @@
 namespace Winegram\WinegramAnalisisBundle\LoadData;
 
 
-class LoadData {
+use Doctrine\ORM\EntityManager;
+use Winegram\WinegramAnalisisBundle\Keywords\GetKeyWords;
+use Winegram\WinegramUtilitiesBundle\Curl\DoPostCurlRequest;
+use Winegram\WinegramUtilitiesBundle\Entity\Comment;
+use Winegram\WinegramUtilitiesBundle\Entity\KeyWord;
+use Winegram\WinegramUtilitiesBundle\Entity\Tone;
+use Winegram\WinegramUtilitiesBundle\Entity\ToneCategorie;
+use Winegram\WinegramUtilitiesBundle\Entity\Wine;
 
-    public function load(){
-        $all_twitts = array(
-            0 => array(
-                "created_at" => "Sat Apr 16 22:35:39 +0000 2016",
-                "id" => 7.2146711584104E+17,
-                "id_str" => "721467115841040384",
-                "text" => "Así me reciben en casa. #pruno #pruno2013 #riberaDelDuero #Cartu #alfonsoCartu #home #homesweetHome #tempranillo https://t.co/qw6tWKTZTP",
-                "truncated" => false,
-                "source" => "<a href='http://twitter.com/download/iphone' rel='nofollow''>Twitter for iPhone</a>",
-                "in_reply_to_status_id" => null,
-                "in_reply_to_status_id_str" => null,
-                "in_reply_to_user_id" => null,
-                "in_reply_to_user_id_str" => null,
-                "in_reply_to_screen_name" => null,
-                "geo" => null,
-                "coordinates" => null,
-                "place" => null,
-                "contributors" => null,
-                "is_quote_status" => false,
-                "retweet_count" => 0,
-                "favorite_count" => 0,
-                "favorited" => false,
-                "retweeted" => false,
-                "possibly_sensitive" => false,
-                "lang" => "es"
-            )
-        );
+class LoadData
+{
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
+    public function load(EntityManager $an_EntityManager, $all_twitts)
+    {
+        $this->em = $an_EntityManager;
+
+        $the_wine = new Wine('pruno');
+
+        $util = new GetKeyWords();
 
         foreach ($all_twitts as $twitt) {
-            print_r($twitt);
+            $the_comment = new Comment($twitt['id_str'],
+                $twitt['text'],
+                $twitt['geo'],
+                $twitt['retweet_count'],
+                $twitt['favorite_count'],
+                $twitt['favorited'],
+                $twitt['retweeted'],
+                $twitt['lang']);
+            $the_comment->setWineId($the_wine->getId());
+            $all_vars = $util->get($twitt['text']);
+            foreach ($all_vars as $var) {
+                $the_KeyWord = new KeyWord($var);
+                $the_KeyWord->setCommentId($the_comment->getId());
+                $an_EntityManager->persist($the_KeyWord);
+            }
+            $this->analize($the_comment);
+            $an_EntityManager->persist($the_comment);
         }
+        $an_EntityManager->flush();
+        print_r('hola');
+    }
 
+    private function analize(Comment $the_comment)
+    {
+
+        $text = $the_comment->getOriginalText();
+        $postRequest = new DoPostCurlRequest();
+        $data = array(
+            "text" => $text
+        );
+        $url = '---';
+        $username = '--';
+        $password = '---';
+        $result = $postRequest->__invoke($url, $data, $username, $password);
+
+        $tone_categories = $result['document_tone']['tone_categories'];
+
+        foreach ($tone_categories as $var) {
+            $tone_categorie = new ToneCategorie(
+                $var['category_id'],
+                $var['category_name']
+            );
+            $tone_categorie->setCommentId($the_comment->getId());
+            $tones = $var['tones'];
+            foreach ($tones as $tone){
+                $tone_data = new Tone(
+                    $tone['score'],
+                    $tone['tone_id'],
+                    $tone['tone_name']
+                );
+                $tone_data->setToneCategorieId($tone_categorie->getId());
+                $this->em->persist($tone_data);
+            }
+            $this->em->persist($tone_categorie);
+        }
     }
 }

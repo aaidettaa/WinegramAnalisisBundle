@@ -1,0 +1,52 @@
+Winegram\WinegramAnalisisBundle\Domain\Entity\Comment:
+    type: entity
+    table: comment
+    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\CommentRepository
+    id:
+        id:
+            type: string
+            id: true
+    fields:
+        originalText:
+            type: string
+            length: 100
+        retweet_count:
+            type: string
+            nullable: true
+        favorite_count:
+            type: string
+            nullable: true
+        lang:
+            type: string
+            nullable: true
+        user:
+            type: string
+            nullable: true
+        location:
+            type: string
+            nullable: true
+        englishText:
+            type: string
+            nullable: true
+        publishDate:
+            type: string
+            nullable: true
+        textSentiment:
+            type: string
+            nullable: true
+        textTwittSentiment:
+            type: string
+            nullable: true
+        wine_id:
+            type: string
+            nullable: true
+        type:
+            type: string
+            nullable: true
+        idRedis:
+            type: string
+            nullable: true
+        gender:
+            type: string
+            nullable: true
+    lifecycleCallbacks: {  }

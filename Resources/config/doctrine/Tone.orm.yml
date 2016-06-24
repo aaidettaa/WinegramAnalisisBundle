@@ -1,0 +1,22 @@
+Winegram\WinegramAnalisisBundle\Domain\Entity\Tone:
+    type: entity
+    table: tone
+    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\ToneRepository
+    id:
+        id:
+            type: string
+            id: true
+    fields:
+        score:
+            type: decimal
+            precision: 7
+            scale: 6
+        tone_id:
+            type: string
+        tone_name:
+            type: string
+            length: 100
+        tone_categorie_id:
+            type: string
+            nullable: false
+    lifecycleCallbacks: {  }

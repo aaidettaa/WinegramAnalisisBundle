@@ -1,0 +1,17 @@
+Winegram\WinegramAnalisisBundle\Domain\Entity\ToneCategorie:
+    type: entity
+    table: toneCategorie
+    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\ToneCategorieRepository
+    id:
+        id:
+            type: string
+            id: true
+    fields:
+        category_id:
+            type: string
+        category_name:
+            type: string
+        comment_id:
+            type: string
+            nullable: false
+    lifecycleCallbacks: {  }

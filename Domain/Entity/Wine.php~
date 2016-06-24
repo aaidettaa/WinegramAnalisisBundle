@@ -1,0 +1,70 @@
+<?php
+
+namespace Winegram\WinegramUtilitiesBundle\Entity;
+
+/**
+ * Wine
+ */
+class Wine
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $originalText;
+
+    /**
+     * @var string
+     */
+    private $geo;
+
+    /**
+     * @var string
+     */
+    private $retweet_count;
+
+    /**
+     * @var string
+     */
+    private $favorite_count;
+
+    /**
+     * @var string
+     */
+    private $favorited;
+
+    /**
+     * @var string
+     */
+    private $retweeted;
+
+    /**
+     * @var string
+     */
+    private $lang;
+
+    public function __construct(
+        $an_id,
+        $an_originalText
+    )
+    {
+        $this->id = $an_id;
+        $this->originalText = $an_originalText;
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+}

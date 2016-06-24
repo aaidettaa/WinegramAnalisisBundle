@@ -1,11 +1,11 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Keywords;
+namespace Winegram\WinegramAnalisisBundle\Application\Service\Keywords;
 
 
 use Symfony\Component\Filesystem\Filesystem;
 
-class GetKeyWords
+class CustomKeywordExtraction implements KeywordExtraction
 {
 
     /**
@@ -14,10 +14,10 @@ class GetKeyWords
      */
     public function get($text)
     {
-        $filename = __DIR__."/stop_words.txt";
+        $filename = __DIR__ . "/stop_words.txt";
         $fs = new Filesystem();
         $stopwords = [];
-        if($fs->exists($filename)){
+        if ($fs->exists($filename)) {
             $stopwords = file($filename, FILE_SKIP_EMPTY_LINES);
         }
         return $this->filter($text, $stopwords);

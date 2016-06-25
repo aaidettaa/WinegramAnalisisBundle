@@ -83,17 +83,26 @@ class WinegramLoadData implements LoadData
 
         $the_comment = new Comment($media['text'],
             $media['type'],
-            $media['retweet_count'],
-            $media['favorite_count'],
+            $media['likes_count'],
             $media['username'],
-            $media['id_vino'],
             $media['id']);
+
+        $this->em->persist($the_comment);
+        $this->em->flush();
 
         $lang = $this->langAnalyzer->detect($the_comment->getOriginalText());
         $the_comment->setLang($lang);
 
+        if($lang == "") $lang = "es";
+
+        $this->em->persist($the_comment);
+        $this->em->flush();
+
         $enText = $this->translator->translate($the_comment->getOriginalText(), $lang . "-en");
         $the_comment->setEnglishText($enText);
+
+        $this->em->persist($the_comment);
+        $this->em->flush();
 
         $all_vars = $this->util->get($the_comment->getOriginalText());
 
@@ -103,14 +112,26 @@ class WinegramLoadData implements LoadData
             $this->em->persist($the_KeyWord);
         }
 
+        $this->em->persist($the_comment);
+        $this->em->flush();
+
         $sentiment = $this->lowAnalyzer->analize($the_comment->getEnglishText());
         $the_comment->setTextSentiment($sentiment);
+
+        $this->em->persist($the_comment);
+        $this->em->flush();
 
         $twittSentiment = $this->twittAnalyzer->analize($the_comment->getEnglishText());
         $the_comment->setTextTwittSentiment($twittSentiment);
 
+        $this->em->persist($the_comment);
+        $this->em->flush();
+
         $gender = $this->genderAnalyzer->detect($the_comment->getEnglishText());
         $the_comment->setGender($gender);
+
+        $this->em->persist($the_comment);
+        $this->em->flush();
 
         $tone_categories = $this->proAnalyzer->analize($the_comment->getEnglishText());
         foreach ($tone_categories as $var) {
@@ -134,6 +155,8 @@ class WinegramLoadData implements LoadData
 
         $this->em->persist($the_comment);
         $this->em->flush();
+
+        return $the_comment->getId();
     }
 
 

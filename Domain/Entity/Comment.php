@@ -95,15 +95,13 @@ class Comment
      */
     private $referencedWines;
 
-    function __construct($originalText, $type, $retweet_count, $favorite_count, $username, $wineId, $idRedis)
+    function __construct($originalText, $type, $retweet_count, $username, $idRedis)
     {
         $uuid4 = Uuid::uuid4();
         $this->id = $uuid4->toString();
         $this->originalText = $originalText;
         $this->retweet_count = $retweet_count;
-        $this->favorite_count = $favorite_count;
         $this->user = $username;
-        $this->wine_id = $wineId;
         $this->type = $type;
         $this->idRedis = $idRedis;
         $this->keywords = new ArrayCollection();

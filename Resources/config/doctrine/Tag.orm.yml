@@ -1,0 +1,16 @@
+Winegram\WinegramAnalisisBundle\Domain\Entity\Tag:
+    type: entity
+    table: tag
+    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\TagRepository
+    id:
+        id:
+            type: string
+            id: true
+    fields:
+        text:
+            type: string
+            length: 100
+        comment_id:
+            type: string
+            nullable: false
+    lifecycleCallbacks: {  }

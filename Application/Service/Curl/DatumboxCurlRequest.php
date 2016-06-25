@@ -20,12 +20,8 @@ final class DatumboxCurlRequest implements CurlRequest
     {
         $data['api_key'] = $this->api_key;
 
-        //http://api.datumbox.com/1.0/LanguageDetection.json
-        //http://api.datumbox.com/1.0/LanguageDetection.json
-        //http://api.datumbox.com:80/1.0/LanguageDetection.json
-
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://api.datumbox.com:80/' . self::version . '/' . $an_url . '.json');
+        curl_setopt($ch, CURLOPT_URL, 'http://api.datumbox.com/' . self::version . '/' . $an_url . '.json');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');

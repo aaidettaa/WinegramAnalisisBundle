@@ -10,40 +10,40 @@ Winegram\WinegramAnalisisBundle\Domain\Entity\Comment:
         originalText:
             type: string
             length: 100
-        retweet_count:
+        likes_count:
             type: string
             nullable: true
-        favorite_count:
-            type: string
-            nullable: true
-        lang:
-            type: string
-            nullable: true
-        user:
-            type: string
-            nullable: true
-        location:
-            type: string
-            nullable: true
-        englishText:
-            type: string
-            nullable: true
-        publishDate:
-            type: string
-            nullable: true
-        textSentiment:
-            type: string
-            nullable: true
-        textTwittSentiment:
-            type: string
-            nullable: true
-        wine_id:
+        username:
             type: string
             nullable: true
         type:
             type: string
             nullable: true
         idRedis:
+            type: string
+            nullable: true
+        media:
+            type: string
+            nullable: true
+        search_id:
+            type: string
+            nullable: true
+        search_content:
+            type: string
+            nullable: true
+        query:
+            type: string
+            nullable: true
+        lang:
+            type: string
+            nullable: true
+        englishText:
+            type: string
+            nullable: true
+        textSentiment:
+            type: string
+            nullable: true
+        textTwittSentiment:
             type: string
             nullable: true
         gender:

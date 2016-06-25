@@ -23,18 +23,20 @@ class YandexCurlRequest implements CurlRequest
     public function __construct($api_key)
     {
         $this->api_key = $api_key;
-        $this->handler = curl_init();
-        curl_setopt($this->handler, CURLOPT_RETURNTRANSFER, true);
     }
 
     public function execute($an_url, $data)
     {
         $data['key'] = $this->api_key;
+
+        $this->handler = curl_init();
+        curl_setopt($this->handler, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->handler, CURLOPT_URL, static::BASE_URL . $an_url);
         curl_setopt($this->handler, CURLOPT_POST, true);
         curl_setopt($this->handler, CURLOPT_POSTFIELDS, http_build_query($data));
 
         $remoteResult = curl_exec($this->handler);
+
         if ($remoteResult === false) {
             throw new Exception(curl_error($this->handler), curl_errno($this->handler));
         }

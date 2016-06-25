@@ -10,6 +10,7 @@ use Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis\Sentim
 use Winegram\WinegramAnalisisBundle\Application\Service\Translation\Translation;
 use Winegram\WinegramAnalisisBundle\Domain\Entity\Comment;
 use Winegram\WinegramAnalisisBundle\Domain\Entity\KeyWord;
+use Winegram\WinegramAnalisisBundle\Domain\Entity\Tag;
 use Winegram\WinegramAnalisisBundle\Domain\Entity\Tone;
 use Winegram\WinegramAnalisisBundle\Domain\Entity\ToneCategorie;
 
@@ -81,11 +82,23 @@ class WinegramLoadData implements LoadData
     public function load($media)
     {
 
-        $the_comment = new Comment($media['text'],
+        $the_comment = new Comment(
+            $media['text'],
             $media['type'],
             $media['likes_count'],
             $media['username'],
-            $media['id']);
+            $media['id'],
+            $media['media'],
+            $media['search_id'],
+            $media['search_content'],
+            $media['query']);
+
+        $all_tags = $media['tags'];
+        foreach ($all_tags as $tag) {
+            $the_tag = new Tag($tag);
+            $the_tag->setCommentId($the_comment->getId());
+            $this->em->persist($the_tag);
+        }
 
         $this->em->persist($the_comment);
         $this->em->flush();
@@ -101,13 +114,15 @@ class WinegramLoadData implements LoadData
         $enText = $this->translator->translate($the_comment->getOriginalText(), $lang . "-en");
         $the_comment->setEnglishText($enText);
 
+
         $this->em->persist($the_comment);
         $this->em->flush();
 
-        $all_vars = $this->util->get($the_comment->getOriginalText());
+        $all_keys = $this->util->get($the_comment->getOriginalText());
 
-        foreach ($all_vars as $var) {
-            $the_KeyWord = new KeyWord($var);
+
+        foreach ($all_keys as $key) {
+            $the_KeyWord = new KeyWord($key);
             $the_KeyWord->setCommentId($the_comment->getId());
             $this->em->persist($the_KeyWord);
         }
@@ -134,6 +149,7 @@ class WinegramLoadData implements LoadData
         $this->em->flush();
 
         $tone_categories = $this->proAnalyzer->analize($the_comment->getEnglishText());
+
         foreach ($tone_categories as $var) {
             $tone_categorie = new ToneCategorie(
                 $var['category_id'],
@@ -152,6 +168,9 @@ class WinegramLoadData implements LoadData
             }
             $this->em->persist($tone_categorie);
         }
+
+//        print_r('final');
+//        exit();
 
         $this->em->persist($the_comment);
         $this->em->flush();

@@ -10,6 +10,7 @@ use Ramsey\Uuid\Uuid;
  */
 class Comment
 {
+
     /**
      * @var string
      */
@@ -23,12 +24,52 @@ class Comment
     /**
      * @var string
      */
-    private $retweet_count;
+    private $likes_count;
 
     /**
      * @var string
      */
-    private $favorite_count;
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $type;
+
+    /**
+     * @var string
+     */
+    private $idRedis;
+
+//    /**
+//     * @var ArrayCollection
+//     */
+//    private $keywords;
+//
+//    /**
+//     * @var ArrayCollection
+//     */
+//    private $tags;
+
+    /**
+     * @var string
+     */
+    private $media;
+
+    /**
+     * @var string
+     */
+    private $search_id;
+
+    /**
+     * @var string
+     */
+    private $search_content;
+
+    /**
+     * @var string
+     */
+    private $query;
 
     /**
      * @var string
@@ -36,29 +77,9 @@ class Comment
     private $lang;
 
     /**
-     * @var ArrayCollection
-     */
-    private $keywords;
-
-    /**
-     * @var string
-     */
-    private $user;
-
-    /**
-     * @var string
-     */
-    private $location;
-
-    /**
      * @var string
      */
     private $englishText;
-
-    /**
-     * @var string
-     */
-    private $publishDate;
 
     /**
      * @var string
@@ -71,46 +92,39 @@ class Comment
     private $textTwittSentiment;
 
     /**
-     * @var int
-     */
-    private $wine_id;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $idRedis;
-
-    /**
      * @var string
      */
     private $gender;
 
-    /**
-     * @var ArrayCollection
-     */
-    private $referencedWines;
 
-    function __construct($originalText, $type, $retweet_count, $username, $idRedis)
+    function __construct(
+        $originalText,
+        $type,
+        $likes_count,
+        $username,
+        $idRedis,
+        $media,
+        $search_id,
+        $search_content,
+        $query)
     {
         $uuid4 = Uuid::uuid4();
         $this->id = $uuid4->toString();
         $this->originalText = $originalText;
-        $this->retweet_count = $retweet_count;
-        $this->user = $username;
+        $this->likes_count = $likes_count;
+        $this->username = $username;
         $this->type = $type;
         $this->idRedis = $idRedis;
-        $this->keywords = new ArrayCollection();
+//        $this->keywords = new ArrayCollection();
+//        $this->tags = new ArrayCollection();
+        $this->media = $media;
+        $this->search_id = $search_id;
+        $this->search_content = $search_content;
+        $this->query = $query;
     }
 
     /**
-     * Get id
-     *
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -119,72 +133,6 @@ class Comment
 
 
     /**
-     * Set originalText
-     *
-     * @param string $originalText
-     *
-     * @return Comment
-     */
-    public function setOriginalText($originalText)
-    {
-        $this->originalText = $originalText;
-
-        return $this;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getRetweetCount()
-    {
-        return $this->retweet_count;
-    }
-
-    /**
-     * @param string $retweet_count
-     */
-    public function setRetweetCount($retweet_count)
-    {
-        $this->retweet_count = $retweet_count;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFavoriteCount()
-    {
-        return $this->favorite_count;
-    }
-
-    /**
-     * @param string $favorite_count
-     */
-    public function setFavoriteCount($favorite_count)
-    {
-        $this->favorite_count = $favorite_count;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getLang()
-    {
-        return $this->lang;
-    }
-
-    /**
-     * @param string $lang
-     */
-    public function setLang($lang)
-    {
-        $this->lang = $lang;
-    }
-
-    /**
-     * Get originalText
-     *
      * @return string
      */
     public function getOriginalText()
@@ -193,171 +141,43 @@ class Comment
     }
 
     /**
-     * @return ArrayCollection
+     * @param string $originalText
      */
-    public function getKeywords()
+    public function setOriginalText($originalText)
     {
-        return $this->keywords;
-    }
-
-    /**
-     * @param ArrayCollection $keywords
-     */
-    public function setKeywords($keywords)
-    {
-        $this->keywords = $keywords;
-    }
-
-    /**
-     * Add users
-     *
-     * @param KeyWord $a_keyword
-     * @return Comment
-     */
-    public function addKeywords(KeyWord $a_keyword)
-    {
-        $this->keywords[] = $a_keyword;
-
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param KeyWord $a_keyword
-     */
-    public function removeKeywords(KeyWord $a_keyword)
-    {
-        $this->keywords->removeElement($a_keyword);
+        $this->originalText = $originalText;
     }
 
     /**
      * @return string
      */
-    public function getUser()
+    public function getLikesCount()
     {
-        return $this->user;
+        return $this->likes_count;
     }
 
     /**
-     * @param string $user
+     * @param string $likes_count
      */
-    public function setUser($user)
+    public function setLikesCount($likes_count)
     {
-        $this->user = $user;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param string $location
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
+        $this->likes_count = $likes_count;
     }
 
     /**
      * @return string
      */
-    public function getEnglishText()
+    public function getUsername()
     {
-        return $this->englishText;
+        return $this->username;
     }
 
     /**
-     * @param string $englishText
+     * @param string $username
      */
-    public function setEnglishText($englishText)
+    public function setUsername($username)
     {
-        $this->englishText = $englishText;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPublishDate()
-    {
-        return $this->publishDate;
-    }
-
-    /**
-     * @param string $publishDate
-     */
-    public function setPublishDate($publishDate)
-    {
-        $this->publishDate = $publishDate;
-    }
-
-    /**
-     * @return int
-     */
-    public function getWineId()
-    {
-        return $this->wine_id;
-    }
-
-    /**
-     * @param int $wine_id
-     */
-    public function setWineId($wine_id)
-    {
-        $this->wine_id = $wine_id;
-    }
-
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getReferencedWines()
-    {
-        return $this->referencedWines;
-    }
-
-    /**
-     * @param ArrayCollection $referencedWines
-     */
-    public function setReferencedWines($referencedWines)
-    {
-        $this->referencedWines = $referencedWines;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTextSentiment()
-    {
-        return $this->textSentiment;
-    }
-
-    /**
-     * @param string $textSentiment
-     */
-    public function setTextSentiment($textSentiment)
-    {
-        $this->textSentiment = $textSentiment;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTextTwittSentiment()
-    {
-        return $this->textTwittSentiment;
-    }
-
-    /**
-     * @param string $textTwittSentiment
-     */
-    public function setTextTwittSentiment($textTwittSentiment)
-    {
-        $this->textTwittSentiment = $textTwittSentiment;
+        $this->username = $username;
     }
 
     /**
@@ -390,6 +210,212 @@ class Comment
     public function setIdRedis($idRedis)
     {
         $this->idRedis = $idRedis;
+    }
+
+//    /**
+//     * @return ArrayCollection
+//     */
+//    public function getKeywords()
+//    {
+//        return $this->keywords;
+//    }
+//
+//    /**
+//     * @param ArrayCollection $keywords
+//     */
+//    public function setKeywords($keywords)
+//    {
+//        $this->keywords = $keywords;
+//    }
+//
+//    /**
+//     * Add keywords
+//     *
+//     * @param KeyWord $a_keyword
+//     * @return Comment
+//     */
+//    public function addKeywords(KeyWord $a_keyword)
+//    {
+//        $this->keywords[] = $a_keyword;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove keywords
+//     *
+//     * @param KeyWord $a_keyword
+//     */
+//    public function removeKeywords(KeyWord $a_keyword)
+//    {
+//        $this->keywords->removeElement($a_keyword);
+//    }
+//
+//    /**
+//     * @return ArrayCollection
+//     */
+//    public function getTags()
+//    {
+//        return $this->tags;
+//    }
+//
+//    /**
+//     * @param ArrayCollection $tags
+//     */
+//    public function setTags($tags)
+//    {
+//        $this->tags = $tags;
+//    }
+//
+//    /**
+//     * Add tags
+//     *
+//     * @param Tag $a_tag
+//     * @return Comment
+//     */
+//    public function addTags(Tag $a_tag)
+//    {
+//        $this->tags[] = $a_tag;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove tags
+//     *
+//     * @param Tag $a_tag
+//     */
+//    public function removeTags(Tag $a_tag)
+//    {
+//        $this->tags->removeElement($a_tag);
+//    }
+
+    /**
+     * @return string
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param string $media
+     */
+    public function setMedia($media)
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSearchId()
+    {
+        return $this->search_id;
+    }
+
+    /**
+     * @param string $search_id
+     */
+    public function setSearchId($search_id)
+    {
+        $this->search_id = $search_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSearchContent()
+    {
+        return $this->search_content;
+    }
+
+    /**
+     * @param string $search_content
+     */
+    public function setSearchContent($search_content)
+    {
+        $this->search_content = $search_content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
+     * @param string $query
+     */
+    public function setQuery($query)
+    {
+        $this->query = $query;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param string $lang
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEnglishText()
+    {
+        return $this->englishText;
+    }
+
+    /**
+     * @param string $englishText
+     */
+    public function setEnglishText($englishText)
+    {
+        $this->englishText = $englishText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextSentiment()
+    {
+        return $this->textSentiment;
+    }
+
+    /**
+     * @param string $textSentiment
+     */
+    public function setTextSentiment($textSentiment)
+    {
+        $this->textSentiment = $textSentiment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextTwittSentiment()
+    {
+        return $this->textTwittSentiment;
+    }
+
+    /**
+     * @param string $textTwittSentiment
+     */
+    public function setTextTwittSentiment($textTwittSentiment)
+    {
+        $this->textTwittSentiment = $textTwittSentiment;
     }
 
     /**

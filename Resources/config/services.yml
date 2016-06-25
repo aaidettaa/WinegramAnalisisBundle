@@ -55,7 +55,7 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@winegram_datumbox_gender_detection"
-            - "@winegram_datumbox_keyword_extraction"
+            - "@winegram_custom_keyword_extraction"
             - "@winegram_datumbox_language_detection"
             - "@winegram_tone_analyser_sentiment_analysis"
             - "@winegram_datumbox_sentiment_analysis"

@@ -1,8 +1,8 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Keywords;
+namespace WinegramAnalisisBundle\Application\Service\Keywords;
 
-use Winegram\WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
 
 /**
  * Performs Keyword Extraction. It extracts the keywords and keywords combinations from a text.

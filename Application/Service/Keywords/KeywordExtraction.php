@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Keywords;
+namespace WinegramAnalisisBundle\Application\Service\Keywords;
 
 interface KeywordExtraction
 {

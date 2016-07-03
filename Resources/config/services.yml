@@ -2,56 +2,56 @@ services:
 
     #----CURL
     winegram_yandex_request:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Curl\YandexCurlRequest
+        class: WinegramAnalisisBundle\Application\Service\Curl\YandexCurlRequest
         arguments:
             - "%yandex_api_key%"
     winegram_datumbox_request:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Curl\DatumboxCurlRequest
+        class: WinegramAnalisisBundle\Application\Service\Curl\DatumboxCurlRequest
         arguments:
             - "%datumbox_api_key%"
     winegram_ibm_post_request:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Curl\PostCurlRequest
+        class: WinegramAnalisisBundle\Application\Service\Curl\PostCurlRequest
         arguments:
             - "%ibm_user%"
             - "%ibm_pw%"
     winegram_get_request:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Curl\GetCurlRequest
+        class: WinegramAnalisisBundle\Application\Service\Curl\GetCurlRequest
 
     #----ANALISIS
     winegram_datumbox_gender_detection:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\GenderDetection\DatumboxGenderDetection
+        class: WinegramAnalisisBundle\Application\Service\GenderDetection\DatumboxGenderDetection
         arguments:
             - "@winegram_datumbox_request"
     winegram_datumbox_keyword_extraction:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Keywords\DatumboxKeywordExtraction
+        class: WinegramAnalisisBundle\Application\Service\Keywords\DatumboxKeywordExtraction
         arguments:
             - "@winegram_datumbox_request"
     winegram_custom_keyword_extraction:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Keywords\CustomKeywordExtraction
+        class: WinegramAnalisisBundle\Application\Service\Keywords\CustomKeywordExtraction
     winegram_datumbox_language_detection:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\LanguageDetection\DatumboxLanguageDetection
+        class: WinegramAnalisisBundle\Application\Service\LanguageDetection\DatumboxLanguageDetection
         arguments:
             - "@winegram_datumbox_request"
     winegram_yandex_translation:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\Translation\YandexTranslation
+        class: WinegramAnalisisBundle\Application\Service\Translation\YandexTranslation
         arguments:
             - "@winegram_yandex_request"
     winegram_tone_analyser_sentiment_analysis:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis\ToneAnalyzerSentimentAnalysis
+        class: WinegramAnalisisBundle\Application\Service\SentimentAnalysis\ToneAnalyzerSentimentAnalysis
         arguments:
             - "@winegram_ibm_post_request"
     winegram_datumbox_sentiment_analysis:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis\DatumboxSentimentAnalysis
+        class: WinegramAnalisisBundle\Application\Service\SentimentAnalysis\DatumboxSentimentAnalysis
         arguments:
             - "@winegram_datumbox_request"
     winegram_datumbox_twitter_sentiment_analysis:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis\DatumboxTwitterSentimentAnalysis
+        class: WinegramAnalisisBundle\Application\Service\SentimentAnalysis\DatumboxTwitterSentimentAnalysis
         arguments:
             - "@winegram_datumbox_request"
 
     #----CORE
     winegram_load_data:
-        class: Winegram\WinegramAnalisisBundle\Application\Service\LoadData\WinegramLoadData
+        class: WinegramAnalisisBundle\Application\Service\LoadData\WinegramLoadData
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@winegram_datumbox_gender_detection"

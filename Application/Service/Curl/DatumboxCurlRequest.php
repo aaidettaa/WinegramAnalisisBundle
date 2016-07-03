@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Curl;
+namespace WinegramAnalisisBundle\Application\Service\Curl;
 
 
 final class DatumboxCurlRequest implements CurlRequest

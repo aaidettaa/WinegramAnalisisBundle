@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Keywords;
+namespace WinegramAnalisisBundle\Application\Service\Keywords;
 
 
 use Symfony\Component\Filesystem\Filesystem;

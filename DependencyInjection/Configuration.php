@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\DependencyInjection;
+namespace WinegramAnalisisBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Domain\Repository;
+namespace WinegramAnalisisBundle\Domain\Repository;
 
 /**
  * ToneCategorieRepository

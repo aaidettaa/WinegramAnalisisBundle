@@ -1,9 +1,9 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\GenderDetection;
+namespace WinegramAnalisisBundle\Application\Service\GenderDetection;
 
 
-use Winegram\WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
 
 class DatumboxGenderDetection implements GenderDetection
 {

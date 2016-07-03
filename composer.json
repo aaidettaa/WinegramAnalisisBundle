@@ -1,34 +1,21 @@
 {
   "name": "aaidettaa/WinegramAnalisisBundle",
   "description": "A demo bundle",
-  "type": "symfony-bundle",
+  "license": "MIT",
+  "homepage": "https://github.com/aaidettaa/WinegramAnalisisBundle",
+  "type": "project",
   "authors": [
     {
       "name": "demo",
       "email": "demo@company.com"
     }
   ],
-  "keywords": [
-    "demo bundle"
-  ],
-  "license": [
-    "MIT"
-  ],
   "require": {
+    "php": ">=5.6"
   },
   "autoload": {
-    "psr-0": {
-      "Company\\DemoBundle": ""
-    }
-  },
-  "target-dir": "Company/DemoBundle",
-  "repositories": [
-    {
-    }
-  ],
-  "extra": {
-    "branch-alias": {
-      "dev-master": "some_version-dev"
+    "psr-4": {
+      "WinegramAnalisisBundle\\": ""
     }
   }
 }

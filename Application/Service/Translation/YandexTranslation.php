@@ -1,9 +1,9 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Translation;
+namespace WinegramAnalisisBundle\Application\Service\Translation;
 
 
-use Winegram\WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
 
 class YandexTranslation implements Translation
 {

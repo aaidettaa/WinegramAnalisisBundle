@@ -39,7 +39,7 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
 
-            new Winegram\WinegramAnalisisBundle\WinegramAnalisisBundle(),
+            new WinegramAnalisisBundle\WinegramAnalisisBundle(),
         );
 
         // ...

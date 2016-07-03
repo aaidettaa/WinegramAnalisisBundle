@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Domain\Entity;
+namespace WinegramAnalisisBundle\Domain\Entity;
 
 use Ramsey\Uuid\Uuid;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle;
+namespace WinegramAnalisisBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

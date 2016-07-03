@@ -1,7 +1,7 @@
-Winegram\WinegramAnalisisBundle\Domain\Entity\Comment:
+WinegramAnalisisBundle\Domain\Entity\Comment:
     type: entity
     table: comment
-    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\CommentRepository
+    repositoryClass: WinegramAnalisisBundle\Domain\Repository\CommentRepository
     id:
         id:
             type: string

@@ -1,7 +1,7 @@
-Winegram\WinegramAnalisisBundle\Domain\Entity\KeyWord:
+WinegramAnalisisBundle\Domain\Entity\KeyWord:
     type: entity
     table: keyword
-    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\KeyWordRepository
+    repositoryClass: WinegramAnalisisBundle\Domain\Repository\KeyWordRepository
     id:
         id:
             type: string

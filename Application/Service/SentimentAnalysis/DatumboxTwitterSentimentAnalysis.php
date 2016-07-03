@@ -1,9 +1,9 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis;
+namespace WinegramAnalisisBundle\Application\Service\SentimentAnalysis;
 
-use Winegram\WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
-use Winegram\WinegramAnalisisBundle\Datumbox\Datumbox;
+use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Datumbox\Datumbox;
 
 /**
  * Performs Sentiment Analysis on Twitter.

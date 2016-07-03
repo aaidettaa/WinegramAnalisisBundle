@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Domain\Entity;
+namespace WinegramAnalisisBundle\Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;

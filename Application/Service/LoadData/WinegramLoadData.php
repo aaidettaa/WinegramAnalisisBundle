@@ -1,18 +1,18 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\LoadData;
+namespace WinegramAnalisisBundle\Application\Service\LoadData;
 
 use Doctrine\ORM\EntityManager;
-use Winegram\WinegramAnalisisBundle\Application\Service\GenderDetection\GenderDetection;
-use Winegram\WinegramAnalisisBundle\Application\Service\Keywords\KeywordExtraction;
-use Winegram\WinegramAnalisisBundle\Application\Service\LanguageDetection\LanguageDetection;
-use Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis\SentimentAnalysis;
-use Winegram\WinegramAnalisisBundle\Application\Service\Translation\Translation;
-use Winegram\WinegramAnalisisBundle\Domain\Entity\Comment;
-use Winegram\WinegramAnalisisBundle\Domain\Entity\KeyWord;
-use Winegram\WinegramAnalisisBundle\Domain\Entity\Tag;
-use Winegram\WinegramAnalisisBundle\Domain\Entity\Tone;
-use Winegram\WinegramAnalisisBundle\Domain\Entity\ToneCategorie;
+use WinegramAnalisisBundle\Application\Service\GenderDetection\GenderDetection;
+use WinegramAnalisisBundle\Application\Service\Keywords\KeywordExtraction;
+use WinegramAnalisisBundle\Application\Service\LanguageDetection\LanguageDetection;
+use WinegramAnalisisBundle\Application\Service\SentimentAnalysis\SentimentAnalysis;
+use WinegramAnalisisBundle\Application\Service\Translation\Translation;
+use WinegramAnalisisBundle\Domain\Entity\Comment;
+use WinegramAnalisisBundle\Domain\Entity\KeyWord;
+use WinegramAnalisisBundle\Domain\Entity\Tag;
+use WinegramAnalisisBundle\Domain\Entity\Tone;
+use WinegramAnalisisBundle\Domain\Entity\ToneCategorie;
 
 
 class WinegramLoadData implements LoadData

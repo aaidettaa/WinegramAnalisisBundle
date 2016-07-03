@@ -1,7 +1,7 @@
-Winegram\WinegramAnalisisBundle\Domain\Entity\Tag:
+WinegramAnalisisBundle\Domain\Entity\Tag:
     type: entity
     table: tag
-    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\TagRepository
+    repositoryClass: WinegramAnalisisBundle\Domain\Repository\TagRepository
     id:
         id:
             type: string

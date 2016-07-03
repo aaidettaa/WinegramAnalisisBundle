@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\LanguageDetection;
+namespace WinegramAnalisisBundle\Application\Service\LanguageDetection;
 
 
 /**

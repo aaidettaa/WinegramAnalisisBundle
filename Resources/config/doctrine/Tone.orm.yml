@@ -1,7 +1,7 @@
-Winegram\WinegramAnalisisBundle\Domain\Entity\Tone:
+WinegramAnalisisBundle\Domain\Entity\Tone:
     type: entity
     table: tone
-    repositoryClass: Winegram\WinegramAnalisisBundle\Domain\Repository\ToneRepository
+    repositoryClass: WinegramAnalisisBundle\Domain\Repository\ToneRepository
     id:
         id:
             type: string

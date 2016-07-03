@@ -123,7 +123,7 @@ class WinegramLoadData implements LoadData
             $this->logger->error('Language Detect no procesado: '.$the_comment->getId());
         }
 
-        if ($lang != "") $lang = "es";
+        if ($lang == "") $lang = "es";
 
         $enText = $this->translator->translate($the_comment->getOriginalText(), $lang . "-en");
 

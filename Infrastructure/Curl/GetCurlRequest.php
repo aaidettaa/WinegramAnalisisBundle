@@ -1,10 +1,24 @@
 <?php
 
-namespace WinegramAnalisisBundle\Application\Service\Curl;
+namespace WinegramAnalisisBundle\Infrastructure\Curl;
 
+
+use Psr\Log\LoggerInterface;
+use WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
 
 class GetCurlRequest implements CurlRequest
 {
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
 
     public function execute($an_url, $data)
     {

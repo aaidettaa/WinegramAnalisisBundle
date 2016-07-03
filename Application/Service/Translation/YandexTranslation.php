@@ -3,7 +3,10 @@
 namespace WinegramAnalisisBundle\Application\Service\Translation;
 
 
-use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
+
+
+use WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Domain\Service\Translation\Translation;
 
 class YandexTranslation implements Translation
 {

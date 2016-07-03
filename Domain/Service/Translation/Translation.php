@@ -1,6 +1,6 @@
 <?php
 
-namespace WinegramAnalisisBundle\Application\Service\Translation;
+namespace WinegramAnalisisBundle\Domain\Service\Translation;
 
 interface Translation
 {

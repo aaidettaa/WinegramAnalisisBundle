@@ -1,6 +1,6 @@
 <?php
 
-namespace WinegramAnalisisBundle\Application\Service\GenderDetection;
+namespace WinegramAnalisisBundle\Domain\Service\GenderDetection;
 
 
 /**

@@ -2,8 +2,10 @@
 
 namespace WinegramAnalisisBundle\Application\Service\SentimentAnalysis;
 
-use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
-use WinegramAnalisisBundle\Datumbox\Datumbox;
+
+use WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Domain\Service\SentimentAnalysis\SentimentAnalysis;
+
 
 /**
  * Performs Sentiment Analysis on Twitter.

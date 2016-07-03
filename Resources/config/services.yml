@@ -2,20 +2,25 @@ services:
 
     #----CURL
     winegram_yandex_request:
-        class: WinegramAnalisisBundle\Application\Service\Curl\YandexCurlRequest
+        class: WinegramAnalisisBundle\Infrastructure\Curl\YandexCurlRequest
         arguments:
             - "%yandex_api_key%"
+            - "@logger"
     winegram_datumbox_request:
-        class: WinegramAnalisisBundle\Application\Service\Curl\DatumboxCurlRequest
+        class: WinegramAnalisisBundle\Infrastructure\Curl\DatumboxCurlRequest
         arguments:
             - "%datumbox_api_key%"
+            - "@logger"
     winegram_ibm_post_request:
-        class: WinegramAnalisisBundle\Application\Service\Curl\PostCurlRequest
+        class: WinegramAnalisisBundle\Infrastructure\Curl\PostCurlRequest
         arguments:
             - "%ibm_user%"
             - "%ibm_pw%"
+            - "@logger"
     winegram_get_request:
-        class: WinegramAnalisisBundle\Application\Service\Curl\GetCurlRequest
+        class: WinegramAnalisisBundle\Infrastructure\Curl\GetCurlRequest
+        arguments:
+            - "@logger"
 
     #----ANALISIS
     winegram_datumbox_gender_detection:
@@ -51,7 +56,7 @@ services:
 
     #----CORE
     winegram_load_data:
-        class: WinegramAnalisisBundle\Application\Service\LoadData\WinegramLoadData
+        class: WinegramAnalisisBundle\Infrastructure\LoadData\WinegramLoadData
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@winegram_datumbox_gender_detection"
@@ -61,4 +66,4 @@ services:
             - "@winegram_datumbox_sentiment_analysis"
             - "@winegram_datumbox_twitter_sentiment_analysis"
             - "@winegram_yandex_translation"
-
+            - "@logger"

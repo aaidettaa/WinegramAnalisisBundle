@@ -1,8 +1,9 @@
 <?php
 
 namespace WinegramAnalisisBundle\Application\Service\LanguageDetection;
+use WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
+use WinegramAnalisisBundle\Domain\Service\LanguageDetection\LanguageDetection;
 
-use WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
 
 /**
  * Performs Language Detection.

@@ -1,6 +1,6 @@
 <?php
 
-namespace WinegramAnalisisBundle\Application\Service\LoadData;
+namespace WinegramAnalisisBundle\Domain\Service\LoadData;
 
 interface LoadData
 {

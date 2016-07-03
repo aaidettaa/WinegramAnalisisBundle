@@ -1,6 +1,6 @@
 <?php
 
-namespace WinegramAnalisisBundle\Application\Service\Curl;
+namespace WinegramAnalisisBundle\Domain\Service\Curl;
 
 interface CurlRequest
 {

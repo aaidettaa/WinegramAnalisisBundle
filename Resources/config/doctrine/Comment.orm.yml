@@ -9,7 +9,7 @@ WinegramAnalisisBundle\Domain\Entity\Comment:
     fields:
         originalText:
             type: string
-            length: 100
+            length: 255
         likes_count:
             type: string
             nullable: true

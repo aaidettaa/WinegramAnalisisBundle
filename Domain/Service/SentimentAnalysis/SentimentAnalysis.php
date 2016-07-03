@@ -1,6 +1,6 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis;
+namespace Winegram\WinegramAnalisisBundle\Domain\Service\SentimentAnalysis;
 
 
 /**

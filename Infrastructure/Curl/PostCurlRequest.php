@@ -1,7 +1,10 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Curl;
+namespace Winegram\WinegramAnalisisBundle\Infrastructure\Curl;
 
+
+use Psr\Log\LoggerInterface;
+use Winegram\WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
 
 class PostCurlRequest implements CurlRequest
 {
@@ -9,10 +12,16 @@ class PostCurlRequest implements CurlRequest
 
     private $password;
 
-    public function __construct($username, $password)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct($username, $password, LoggerInterface $logger)
     {
         $this->username = $username;
         $this->password = $password;
+        $this->logger = $logger;
     }
 
     public function execute($an_url, $data)
@@ -47,6 +56,23 @@ class PostCurlRequest implements CurlRequest
 
         // further processing ....
         $decoded = json_decode($resp, true);
-        return $decoded;
+        return $this->parse($decoded);
+    }
+
+    /**
+     * Parses the API Reply
+     *
+     * @param mixed $jsonreply
+     *
+     * @return mixed
+     */
+    private function parse($result)
+    {
+        if (isset($result['error'])) {
+            $this->logger->error($result['error']);
+            return false;
+        }
+
+        return $result;
     }
 }

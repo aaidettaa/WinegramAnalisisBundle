@@ -1,9 +1,11 @@
 <?php
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Curl;
+namespace Winegram\WinegramAnalisisBundle\Infrastructure\Curl;
 
 
 use Exception;
+use Psr\Log\LoggerInterface;
+use Winegram\WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
 
 class YandexCurlRequest implements CurlRequest
 {
@@ -20,9 +22,15 @@ class YandexCurlRequest implements CurlRequest
      */
     protected $handler;
 
-    public function __construct($api_key)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct($api_key, LoggerInterface $logger)
     {
         $this->api_key = $api_key;
+        $this->logger = $logger;
     }
 
     public function execute($an_url, $data)
@@ -41,6 +49,19 @@ class YandexCurlRequest implements CurlRequest
             throw new Exception(curl_error($this->handler), curl_errno($this->handler));
         }
         $result = json_decode($remoteResult, true);
+
+        return $this->parse($result);
+    }
+
+    /**
+     * Parses the API Reply
+     *
+     * @param mixed $jsonreply
+     *
+     * @return mixed
+     */
+    private function parse($result)
+    {
         if (!$result) {
             $errorMessage = self::MESSAGE_UNKNOWN_ERROR;
             if (version_compare(PHP_VERSION, '5.3', '>=')) {
@@ -52,10 +73,15 @@ class YandexCurlRequest implements CurlRequest
                     }
                 }
             }
-            throw new Exception(sprintf('%s: %s', self::MESSAGE_INVALID_RESPONSE, $errorMessage));
+            $this->logger->error(sprintf('%s: %s', self::MESSAGE_INVALID_RESPONSE, $errorMessage));
+            return false;
+//            throw new Exception(sprintf('%s: %s', self::MESSAGE_INVALID_RESPONSE, $errorMessage));
         } elseif (isset($result['code']) && $result['code'] > 200) {
-            throw new Exception($result['message'], $result['code']);
+            $this->logger->error($result['message']);
+//            throw new Exception($result['message'], $result['code']);
+            return false;
         }
+
         return $result;
     }
 }

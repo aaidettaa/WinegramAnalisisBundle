@@ -4,6 +4,7 @@ namespace Winegram\WinegramAnalisisBundle\Application\Service\Keywords;
 
 
 use Symfony\Component\Filesystem\Filesystem;
+use Winegram\WinegramAnalisisBundle\Domain\Service\Keywords\KeywordExtraction;
 
 class CustomKeywordExtraction implements KeywordExtraction
 {

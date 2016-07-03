@@ -1,10 +1,9 @@
 <?php
 
 namespace Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis;
+use Winegram\WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
+use Winegram\WinegramAnalisisBundle\Domain\Service\SentimentAnalysis\SentimentAnalysis;
 
-
-use Winegram\WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
-use Winegram\WinegramAnalisisBundle\Datumbox\Datumbox;
 
 /**
  * Performs Sentiment Analysis.

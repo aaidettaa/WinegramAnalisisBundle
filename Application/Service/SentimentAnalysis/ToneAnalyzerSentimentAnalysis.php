@@ -3,7 +3,9 @@
 namespace Winegram\WinegramAnalisisBundle\Application\Service\SentimentAnalysis;
 
 
-use Winegram\WinegramAnalisisBundle\Application\Service\Curl\CurlRequest;
+
+use Winegram\WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
+use Winegram\WinegramAnalisisBundle\Domain\Service\SentimentAnalysis\SentimentAnalysis;
 
 class ToneAnalyzerSentimentAnalysis implements SentimentAnalysis
 {
@@ -26,7 +28,15 @@ class ToneAnalyzerSentimentAnalysis implements SentimentAnalysis
 
         $result = $this->curl->execute(self::URL_API, $data);
 
+        if (isset($tone_categories['error'])) {
+            return false;
+        }
+
+//        print_r($result);exit();
+
         $tone_categories = $result['document_tone']['tone_categories'];
+
+//        print_r($tone_categories);exit();
 
         return $tone_categories;
     }

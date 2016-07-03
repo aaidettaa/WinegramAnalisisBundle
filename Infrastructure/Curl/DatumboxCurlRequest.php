@@ -1,8 +1,11 @@
 <?php
 
 
-namespace Winegram\WinegramAnalisisBundle\Application\Service\Curl;
+namespace Winegram\WinegramAnalisisBundle\Infrastructure\Curl;
 
+
+use Psr\Log\LoggerInterface;
+use Winegram\WinegramAnalisisBundle\Domain\Service\Curl\CurlRequest;
 
 final class DatumboxCurlRequest implements CurlRequest
 {
@@ -11,9 +14,15 @@ final class DatumboxCurlRequest implements CurlRequest
 
     private $api_key;
 
-    public function __construct($api_key)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct($api_key, LoggerInterface $logger)
     {
         $this->api_key = $api_key;
+        $this->logger = $logger;
     }
 
     public function execute($an_url, $data)
@@ -49,7 +58,8 @@ final class DatumboxCurlRequest implements CurlRequest
         }
 
         if (isset($jsonreply['error']['ErrorCode']) && isset($jsonreply['error']['ErrorMessage'])) {
-            echo $jsonreply['error']['ErrorMessage'] . ' (ErrorCode: ' . $jsonreply['error']['ErrorCode'] . ')';
+            $this->logger->error($jsonreply['error']['ErrorMessage'] . ' (ErrorCode: ' . $jsonreply['error']['ErrorCode'] . ')');
+//            echo $jsonreply['error']['ErrorMessage'] . ' (ErrorCode: ' . $jsonreply['error']['ErrorCode'] . ')';
         }
 
         return false;
